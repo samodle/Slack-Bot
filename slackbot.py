@@ -9,11 +9,11 @@ import time
 from slackclient import SlackClient
 from response_map import response_dict
 from triggers import get_response_key
-
+import slack_config
 
 # Bot settings & connection handlers
-BOT_NAME = "..."  # replace this with your bot's name
-slack_client = SlackClient(os.environ.get("..."))
+BOT_NAME = slack_config.SLACK_BOT_NAME  # replace this with your bot's name
+slack_client = SlackClient(os.environ.get(slack_config.SLACK_TOKEN))
 
 
 def handle_command(command, channel):
@@ -37,7 +37,6 @@ def handle_command(command, channel):
         response = response(command)
 
     slack_client.api_call("chat.postMessage", channel=channel, text=response, as_user=True)
-
 
 
 def parse_slack_output(slack_rtm_output):

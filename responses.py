@@ -5,7 +5,7 @@ import requests
 
 from textblob import Word
 from bs4 import BeautifulSoup
-from apiclient.discovery import build
+#from apiclient.discovery import build
 from urllib.parse import urlencode, quote_plus
 
 
@@ -74,27 +74,6 @@ def get_quote(command):
              f"the company at ${mkt_cap:,}"
 
     return result
-
-
-def get_video(command):
-    """Uses Google API to query for youtube results, and then returns the top result"""
-
-    # standardize and clean input
-    command = command.replace("youtube", "play").split("play")[-1].replace("of", "")
-
-    # Set developerKey to the API key value from the APIs & auth > Registered apps at https://cloud.google.com/console
-    youtube = build("youtube", "v3", developerKey=os.environ.get('GOOGLE_DEVELOPER_KEY'), cache_discovery=False)
-
-    # Call the search.list method to retrieve results matching the specified query term.
-    search_response = youtube.search().list(
-        q=command,
-        part="id,snippet",
-        maxResults=5
-    ).execute()
-
-    videos = [v for v in search_response["items"] if "videoId" in v["id"]]
-    url = "https://www.youtube.com/watch?v={}".format(random.choice(videos)["id"]["videoId"])
-    return url
 
 
 def joke(_):

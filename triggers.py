@@ -15,7 +15,6 @@ search_triggers = (
     (re.compile("(search)|(look up)|(google)"), "search"),
     (re.compile("synonyms"), "synonyms"),
     (re.compile("(wordcount)|(word count)"), "wordcount"),
-    (re.compile("(play|video|youtube)"), "youtube"),
 )
 
 

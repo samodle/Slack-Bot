@@ -39,7 +39,4 @@ response_dict = {
     'wordcount': [
         rsp.word_count
     ],
-    'youtube': [
-        rsp.get_video
-    ],
 }
